@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal QR Generator</title>
     <style>
-        /* Modern Gradient Background */
+       
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #e0f2f1 0%, #b2ebf2 100%);
@@ -61,7 +61,7 @@
             min-width: 180px;
         }
 
-        /* The "Created By" Signature */
+        
         .footer-credit {
             margin-top: 20px;
             font-size: 14px;
@@ -96,11 +96,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <script>
-        // Store the QR object so we can reuse it
+       
         let qrcode = new QRCode(document.getElementById("qr-display"), {
             width: 180,
             height: 180,
-            colorDark: "#87CEEB", // Light Blue
+            colorDark: "#87CEEB", 
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H
         });
@@ -109,17 +109,18 @@
             let nameValue = document.getElementById("nameBox").value;
             
             if (!nameValue) {
-                // Keep it clean if input is empty
+                
                 qrcode.clear(); 
             } else {
                 qrcode.makeCode(nameValue);
             }
         }
 
-        // Generate a default one on load
+       
         window.onload = () => {
             qrcode.makeCode("Type Your Name");
         };
     </script>
 </body>
 </html>
+
