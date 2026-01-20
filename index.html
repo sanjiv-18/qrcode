@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal QR Generator</title>
+    <style>
+        /* Modern Gradient Background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2ebf2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .main-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+            border: 2px solid #87CEEB;
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: 0.3s;
+            outline: none;
+            text-align: center;
+        }
+
+        input:focus {
+            border-color: #87CEEB;
+            box-shadow: 0 0 8px rgba(135, 206, 235, 0.4);
+        }
+
+        #qr-display {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 20px;
+            min-height: 180px;
+            min-width: 180px;
+        }
+
+        /* The "Created By" Signature */
+        .footer-credit {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+            font-style: italic;
+        }
+
+        .footer-credit span {
+            color: #87CEEB;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <h2>Name QR Studio</h2>
+        <p style="color: #888;">Type your name to see the magic</p>
+
+        <div class="input-group">
+            <input type="text" id="nameBox" placeholder="Enter Name Here" oninput="makeQR()">
+        </div>
+
+        <div id="qr-display">
+            </div>
+
+        <div class="footer-credit">
+            Created by <span>[Your Name]</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        // Store the QR object so we can reuse it
+        let qrcode = new QRCode(document.getElementById("qr-display"), {
+            width: 180,
+            height: 180,
+            colorDark: "#87CEEB", // Light Blue
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        function makeQR() {
+            let nameValue = document.getElementById("nameBox").value;
+            
+            if (!nameValue) {
+                // Keep it clean if input is empty
+                qrcode.clear(); 
+            } else {
+                qrcode.makeCode(nameValue);
+            }
+        }
+
+        // Generate a default one on load
+        window.onload = () => {
+            qrcode.makeCode("Type Your Name");
+        };
+    </script>
+</body>
+</html>
